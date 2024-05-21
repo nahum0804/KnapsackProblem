@@ -1,10 +1,37 @@
 import java.util.List;
+
+/**
+ * Genetic Algorithm
+ */
 public class GeneticAlgorithm {
-    public static void run(List<Object> elements, int maxWeight) {
+
+    /* Fitness function
+    private static int fitnessFunction(Object object) {
+        return object.getValue() / object.getWeight();
+    }
+    */
+
+    /**
+     * Algorithm for filling the rucksack
+     * @param elements
+     * @param maxValue
+     */
+    private static void mochila(List<Object> elements, int maxValue) {
         System.out.println("Genetic Algorithm!");
 
         for (Object element : elements) {
-            System.out.println(element.getName());
+            String weight = String.valueOf(element.getWeight());
+            String value = String.valueOf(element.getValue());
+            System.out.println(element.getName() + " - " + weight + " - " + value);
         }
+    }
+
+    /**
+     * Run the algorithm
+     * @param elements
+     * @param maxValue
+     */
+    public static void run(List<Object> elements, int maxValue) {
+        mochila(elements, maxValue);
     }
 }
