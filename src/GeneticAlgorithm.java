@@ -5,12 +5,6 @@ import java.util.List;
  */
 public class GeneticAlgorithm {
 
-    /* Fitness function
-    private static int fitnessFunction(Object object) {
-        return object.getValue() / object.getWeight();
-    }
-    */
-
     /**
      * Algorithm for filling the rucksack
      * @param elements
