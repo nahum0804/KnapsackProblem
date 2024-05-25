@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,6 +19,28 @@ public class GeneticAlgorithm {
             String value = String.valueOf(element.getValue());
             System.out.println(element.getName() + " - " + weight + " - " + value);
         }
+    }
+
+    /**
+     * Function to generate the chromosome
+     * @param items
+     * @param max
+     * @return
+     */
+    private static List<Integer> chromosome(List<Object> items, int max){
+        List<Integer> selected = new ArrayList<>();
+        int n = items.size();
+        int counterValue = 0;
+        for(int i = 0; i < n; i++){
+            Object item = items.get(i);
+            if(counterValue + item.getValue() <= max){
+                selected.add(1);
+                counterValue += item.getValue();
+            } else {
+                selected.add(0);
+            }
+        }
+        return selected;
     }
 
     /**
