@@ -1,3 +1,4 @@
+import javax.xml.transform.Result;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -21,6 +22,7 @@ public class Main {
 
     /**
      * Generate a list of objects
+     *
      * @param length
      * @return
      */
@@ -45,6 +47,7 @@ public class Main {
 
     /**
      * Generate initial list of objects with 5 elements
+     *
      * @return
      */
     private static List<Object> firstList() {
@@ -59,6 +62,7 @@ public class Main {
 
     /**
      * Generate a list of objects with a specific length
+     *
      * @param length
      * @return
      */
@@ -86,6 +90,7 @@ public class Main {
 
     /**
      * Main method
+     *
      * @param args
      */
     public static void main(String[] args) {
@@ -105,6 +110,12 @@ public class Main {
          * Dinamic Algorithm execution
          */
         DinamicAlgorithm dinamicAlgorithm = new DinamicAlgorithm();
-        dinamicAlgorithm.run(tenElements, 10);
+
+        DinamicAlgorithm.Result result = dinamicAlgorithm.run(tenElements, 10);
+        System.out.println("El valor máximo que se puede obtener es: " + result.getValorMax());
+        System.out.println("Los objetos seleccionados son:");
+        for (Object item : result.getItemsSelec()) {
+            System.out.println(item.getName() + " (Peso: " + item.getWeight() + ", Valor: " + item.getValue() + ")");
+        }
     }
 }
