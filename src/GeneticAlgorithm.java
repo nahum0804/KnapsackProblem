@@ -19,11 +19,9 @@ public class GeneticAlgorithm {
         Random random = new Random();
         int randomValue = 0;
         int initialPopulation;
-        int numberSons;
 
         if(n == 5){
             initialPopulation = 3;
-            numberSons = 6;
 
             for(int i = 0; i < initialPopulation; i++){
                 for(int j = 0; j < n; j++){
@@ -36,7 +34,6 @@ public class GeneticAlgorithm {
 
         } else{
             initialPopulation = n;
-            numberSons = n * 2;
             for(int i = 0; i < initialPopulation; i++){
                 for(int j = 0; j < n; j++){
                     randomValue = random.nextInt(2);
@@ -158,11 +155,82 @@ public class GeneticAlgorithm {
 
 
     /**
+     * Function to run number of generations
+     * @param initialPopulation
+     * @param items
+     * @param maxValue
+     * @return
+     */
+    private static List<List<Integer>> runGenerations(List<List<Integer>> initialPopulation, List<Object> items, int maxValue){
+        List<List<Integer>> population = initialPopulation;
+        List<List<Integer>> selectedPopulation = new ArrayList<>();
+        List<List<Integer>> sons = new ArrayList<>();
+        List<List<Integer>> mutatedPopulation = new ArrayList<>();
+        int numberSons = 0;
+        int numberMutations = 0;
+        int generations = 20;
+
+        for(int i = 0; i < generations; i++){
+            selectedPopulation = fitness(population, items, maxValue);
+            if(selectedPopulation.size() == 5){
+                numberSons = 3;
+            } else {
+                numberSons = selectedPopulation.size();
+            }
+
+            numberSons = population.size() - selectedPopulation.size();
+            sons = crossover(population, numberSons);
+            numberMutations = population.size() - selectedPopulation.size() - sons.size();
+            mutatedPopulation = mutation(population, numberMutations);
+            population = new ArrayList<>();
+            population.addAll(selectedPopulation);
+            population.addAll(sons);
+            population.addAll(mutatedPopulation);
+        }
+
+        return population;
+    }
+
+
+    /**
      * Run the algorithm
      * @param elements
      * @param maxValue
      */
     public static void run(List<Object> elements, int maxValue) {
+        List<List<Integer>> initialPopulation = initialPopulation(elements);
+        List<List<Integer>> finalPopulation = runGenerations(initialPopulation, elements, maxValue);
+        List<Integer> bestChromosome = new ArrayList<>();
+        int bestValue = 0;
+        int bestWeight = 0;
+        int value = 0;
+        int weight = 0;
+        int n = elements.size();
+
+        for(List<Integer> chromosome : finalPopulation){
+            for(int i = 0; i < n; i++){
+                if(chromosome.get(i) == 1){
+                    value += elements.get(i).getValue();
+                    weight += elements.get(i).getWeight();
+                }
+            }
+            if(value > bestValue && weight <= maxValue){
+                bestValue = value;
+                bestWeight = weight;
+                bestChromosome = chromosome;
+            }
+            value = 0;
+            weight = 0;
+        }
+
         System.out.println("Genetic Algorithm!");
+        System.out.println("Best value: " + bestValue);
+        System.out.println("Best weight: " + bestWeight);
+        System.out.println("Objects selected: ");
+        for(int i = 0; i < n; i++){
+            if(bestChromosome.get(i) == 1){
+                System.out.println(elements.get(i).getName());
+            }
+        }
     }
 }
