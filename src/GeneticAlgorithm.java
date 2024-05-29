@@ -183,10 +183,26 @@ public class GeneticAlgorithm {
 
         System.out.println("\nBest 5 chromosomes: ");
         for(int i = 0; i < bestChromosomes.size(); i++){
-            System.out.println(bestChromosomes.get(i) + " - " + fitness(bestChromosomes.get(i), items, maxWeight));
+            System.out.println(bestChromosomes.get(i) + " - Value:" + fitness(bestChromosomes.get(i), items, maxWeight) + " - Weight: " + getWeight(bestChromosomes.get(i), items));
         }
     }
 
+
+    /**
+     * Get the weight of the chromosome
+     * @param chromosome
+     * @param items
+     * @return
+     */
+    private static int getWeight(List<Integer> chromosome, List<Object> items){
+        int weight = 0;
+        for(int i = 0; i < chromosome.size(); i++){
+            if(chromosome.get(i) == 1){
+                weight += items.get(i).getWeight();
+            }
+        }
+        return weight;
+    }
 
     /**
      * Run the algorithm

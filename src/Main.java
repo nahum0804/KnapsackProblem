@@ -61,7 +61,6 @@ public class Main {
 
     /**
      * Generate a list of objects with a specific length
-     *
      * @param length
      * @return
      */
