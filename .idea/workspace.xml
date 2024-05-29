@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="778cd076-4f66-4e59-8481-d268c0bd91ce" name="Changes" comment="Set functionality (Genetic Algorithm) pt2">
+    <list default="true" id="778cd076-4f66-4e59-8481-d268c0bd91ce" name="Changes" comment="Set functionality (Genetic Algorithm) pt3">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GeneticAlgorithm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GeneticAlgorithm.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
@@ -94,7 +94,14 @@
       <option name="project" value="LOCAL" />
       <updated>1716942404168</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Set functionality (Genetic Algorithm) pt3">
+      <created>1716947177041</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1716947177041</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -116,6 +123,7 @@
     <MESSAGE value="Genetic Algorithm Functionality is done!" />
     <MESSAGE value="Set functionality (Genetic Algorithm)" />
     <MESSAGE value="Set functionality (Genetic Algorithm) pt2" />
-    <option name="LAST_COMMIT_MESSAGE" value="Set functionality (Genetic Algorithm) pt2" />
+    <MESSAGE value="Set functionality (Genetic Algorithm) pt3" />
+    <option name="LAST_COMMIT_MESSAGE" value="Set functionality (Genetic Algorithm) pt3" />
   </component>
 </project>
