@@ -53,10 +53,21 @@ public class GeneticAlgorithm {
             List<Integer> child2 = crossover(parent2, parent1);
 
             if (random.nextInt(100) < 10) {
+                List<Integer> originalChild1 = new ArrayList<>(child1);
                 child1 = mutation(child1);
+                int mutationChild1Fitness = fitness(child1, items, maxWeight);
+                System.out.println("Individuo 1: " + originalChild1 + " - Puntuación: " + fitness(originalChild1, items, maxWeight));
+                System.out.println("Mutación: " + child1 + " - Puntuación: " + mutationChild1Fitness);
+                System.out.println();
             }
+
             if (random.nextInt(100) < 10) {
+                List<Integer> originalChild2 = new ArrayList<>(child2);
                 child2 = mutation(child2);
+                int mutationChild2Fitness = fitness(child2, items, maxWeight);
+                System.out.println("Individuo 2: " + originalChild2 + " - Puntuación: " + fitness(originalChild2, items, maxWeight));
+                System.out.println("Mutación: " + child2 + " - Puntuación: " + mutationChild2Fitness);
+                System.out.println();
             }
 
             if (getWeight(child1, items) <= maxWeight) {
