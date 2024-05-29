@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="778cd076-4f66-4e59-8481-d268c0bd91ce" name="Changes" comment="Genetic Algorithm Functionality is done!">
+    <list default="true" id="778cd076-4f66-4e59-8481-d268c0bd91ce" name="Changes" comment="Set functionality (Genetic Algorithm)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GeneticAlgorithm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GeneticAlgorithm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,7 +79,14 @@
       <option name="project" value="LOCAL" />
       <updated>1716785307703</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Set functionality (Genetic Algorithm)">
+      <created>1716941835121</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1716941835121</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -100,6 +106,7 @@
     <MESSAGE value="Function to make lists" />
     <MESSAGE value="Fitness, Mutation and initializer population functions" />
     <MESSAGE value="Genetic Algorithm Functionality is done!" />
-    <option name="LAST_COMMIT_MESSAGE" value="Genetic Algorithm Functionality is done!" />
+    <MESSAGE value="Set functionality (Genetic Algorithm)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Set functionality (Genetic Algorithm)" />
   </component>
 </project>

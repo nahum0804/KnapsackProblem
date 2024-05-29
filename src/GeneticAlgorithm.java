@@ -59,7 +59,6 @@ public class GeneticAlgorithm {
         List<Integer> parent1;
         List<Integer> parent2;
 
-        System.out.println("\nCrossover: ");
         for(int i = 0; i < population.size(); i++){
             if(i == population.size() - 1){
                 parent1 = population.get(i);
@@ -72,7 +71,6 @@ public class GeneticAlgorithm {
             newPopulation.add(child);
         }
 
-        System.out.println("\nMutation: ");
         for(int i = 0; i < newPopulation.size(); i++){
             Random random = new Random();
             int mutationValue = random.nextInt(100);
@@ -81,7 +79,6 @@ public class GeneticAlgorithm {
             }
         }
 
-        System.out.println("Fitness function: ");
         for(int i = 0; i < newPopulation.size(); i++){
             System.out.println(newPopulation.get(i) + " - " + fitness(newPopulation.get(i), items, maxWeight));
         }
@@ -157,13 +154,36 @@ public class GeneticAlgorithm {
      */
     private static void runGenerations(List<List<Integer>> population, List<Object> items, int maxWeight, int generations){
         for(int i = 0; i < generations; i++){
-            System.out.println("\nGeneration " + i);
+            System.out.println("\nGeneration " + i + " is done!");
             population = newPopulation(population, items, maxWeight);
         }
 
         System.out.println("Last generation: ");
         for(int i = 0; i < population.size(); i++){
             System.out.println(population.get(i));
+        }
+
+
+        //Best 5 chromosomes
+        List<List<Integer>> bestChromosomes = new ArrayList<>();
+
+        for(int i = 0; i < 5; i++){
+            int bestValue = 0;
+            int bestIndex = 0;
+            for(int j = 0; j < population.size(); j++){
+                int value = fitness(population.get(j), items, maxWeight);
+                if(value > bestValue){
+                    bestValue = value;
+                    bestIndex = j;
+                }
+            }
+            bestChromosomes.add(population.get(bestIndex));
+            population.remove(bestIndex);
+        }
+
+        System.out.println("\nBest 5 chromosomes: ");
+        for(int i = 0; i < bestChromosomes.size(); i++){
+            System.out.println(bestChromosomes.get(i) + " - " + fitness(bestChromosomes.get(i), items, maxWeight));
         }
     }
 
@@ -181,6 +201,6 @@ public class GeneticAlgorithm {
             System.out.println(initialPopulation.get(i));
         }
 
-        runGenerations(initialPopulation, elements, maxValue, 2);
+        runGenerations(initialPopulation, elements, maxValue, 10);
     }
 }
