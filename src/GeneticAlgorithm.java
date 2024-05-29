@@ -1,3 +1,4 @@
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -43,152 +44,127 @@ public class GeneticAlgorithm {
                 chromosome = new ArrayList<>();
             }
         }
-
         return population;
     }
 
     /**
-     * Crossover between chromosomes
+     * New population of chromosomes
      * @param population
-     * @param numberSons
+     * @param items
+     * @param maxWeight
      * @return
      */
-    private static List<List<Integer>> crossover(List<List<Integer>> population, int numberSons){
-        List<List<Integer>> sons = new ArrayList<>();
-        List<Integer> son = new ArrayList<>();
-        Random random = new Random();
-        int randomValue = 0;
-        int n = population.get(0).size();
-        int crossoverPoint = 0;
+    private static List<List<Integer>> newPopulation(List<List<Integer>> population, List<Object> items, int maxWeight){
+        List<List<Integer>> newPopulation = new ArrayList<>();
+        List<Integer> parent1;
+        List<Integer> parent2;
 
-        for(int i = 0; i < numberSons; i++){
-            int father1 = random.nextInt(population.size());
-            int father2 = random.nextInt(population.size());
-            crossoverPoint = random.nextInt(n);
-
-            for(int j = 0; j < n; j++){
-                if(j < crossoverPoint){
-                    son.add(population.get(father1).get(j));
-                } else{
-                    son.add(population.get(father2).get(j));
-                }
+        System.out.println("\nCrossover: ");
+        for(int i = 0; i < population.size(); i++){
+            if(i == population.size() - 1){
+                parent1 = population.get(i);
+                parent2 = population.get(0);
+            } else{
+                parent1 = population.get(i);
+                parent2 = population.get(i+1);
             }
-            sons.add(son);
-            son = new ArrayList<>();
+            List<Integer> child = crossover(parent1, parent2);
+            newPopulation.add(child);
         }
 
-        return sons;
-    }
-
-    private static List<List<Integer>> mutation(List<List<Integer>> population, int numberMutations){
-        List<List<Integer>> mutatedPopulation = new ArrayList<>();
-        List<Integer> mutatedChromosome = new ArrayList<>();
-        Random random = new Random();
-        int n = population.get(0).size();
-        int mutationPoint = 0;
-        int randomValue = 0;
-
-        for(int i = 0; i < numberMutations; i++){
-            int father = random.nextInt(population.size());
-            mutationPoint = random.nextInt(n);
-
-            for(int j = 0; j < n; j++){
-                if(j == mutationPoint){
-                    if(population.get(father).get(j) == 0){
-                        randomValue = 1;
-                    } else{
-                        randomValue = 0;
-                    }
-                    mutatedChromosome.add(randomValue);
-                } else{
-                    mutatedChromosome.add(population.get(father).get(j));
-                }
+        System.out.println("\nMutation: ");
+        for(int i = 0; i < newPopulation.size(); i++){
+            Random random = new Random();
+            int mutationValue = random.nextInt(100);
+            if(mutationValue < 10){
+                newPopulation.set(i, mutation(newPopulation.get(i)));
             }
-            mutatedPopulation.add(mutatedChromosome);
-            mutatedChromosome = new ArrayList<>();
         }
 
-        return mutatedPopulation;
+        System.out.println("Fitness function: ");
+        for(int i = 0; i < newPopulation.size(); i++){
+            System.out.println(newPopulation.get(i) + " - " + fitness(newPopulation.get(i), items, maxWeight));
+        }
+
+        return newPopulation;
     }
 
     /**
-     * Selection of the best chromosomes
-     * @param population
+     * Fitness function
+     * @param chromosome
      * @param items
-     * @param maxValue
+     * @param maxWeight
      * @return
      */
-    private static List<List<Integer>> fitness(List<List<Integer>> population, List<Object> items, int maxValue){
-        List<List<Integer>> selectedPopulation = new ArrayList<>();
-        List<Integer> selectedChromosome = new ArrayList<>();
-        int n = population.get(0).size();
-        int totalValue = 0;
-        int totalWeight = 0;
+    private static int fitness(List<Integer> chromosome, List<Object> items, int maxWeight){
         int value = 0;
         int weight = 0;
-        int randomValue = 0;
-        Random random = new Random();
-
-        for(List<Integer> chromosome : population){
-            for(int i = 0; i < n; i++){
-                if(chromosome.get(i) == 1){
-                    value += items.get(i).getValue();
-                    weight += items.get(i).getWeight();
-                }
+        for(int i = 0; i < chromosome.size(); i++){
+            if(chromosome.get(i) == 1){
+                value += items.get(i).getValue();
+                weight += items.get(i).getWeight();
             }
-            if(weight <= maxValue){
-                selectedPopulation.add(chromosome);
-            } else{
-                for(int i = 0; i < n; i++){
-                    randomValue = random.nextInt(2);
-                    selectedChromosome.add(randomValue);
-                }
-                selectedPopulation.add(selectedChromosome);
-                selectedChromosome = new ArrayList<>();
-            }
-            value = 0;
-            weight = 0;
         }
-
-        return selectedPopulation;
+        if(weight > maxWeight){
+            return 0;
+        }
+        return value;
     }
 
 
     /**
-     * Function to run number of generations
-     * @param initialPopulation
-     * @param items
-     * @param maxValue
+     * Crossover of the chromosomes
+     * @param parent1
+     * @param parent2
      * @return
      */
-    private static List<List<Integer>> runGenerations(List<List<Integer>> initialPopulation, List<Object> items, int maxValue){
-        List<List<Integer>> population = initialPopulation;
-        List<List<Integer>> selectedPopulation = new ArrayList<>();
-        List<List<Integer>> sons = new ArrayList<>();
-        List<List<Integer>> mutatedPopulation = new ArrayList<>();
-        int numberSons = 0;
-        int numberMutations = 0;
-        int generations = 20;
+    private static List<Integer> crossover(List<Integer> parent1, List<Integer> parent2) {
+        List<Integer> child = new ArrayList<>();
+        Random random = new Random();
+        int crossoverPoint = random.nextInt(parent1.size());
+        for (int i = 0; i <= crossoverPoint; i++) { // Límite superior
+            child.add(parent1.get(i));
+        }
+        for (int i = crossoverPoint + 1; i < parent2.size(); i++) { // Límite inferior
+            child.add(parent2.get(i));
+        }
+        return child;
+    }
 
+    /**
+     * Mutation of the chromosome
+     * @param chromosome
+     * @return
+     */
+    private static List<Integer> mutation(List<Integer> chromosome){
+        Random random = new Random();
+        int mutationPoint = random.nextInt(chromosome.size());
+        if(chromosome.get(mutationPoint) == 0){
+            chromosome.set(mutationPoint, 1);
+        } else{
+            chromosome.set(mutationPoint, 0);
+        }
+        return chromosome;
+    }
+
+
+    /**
+     * Run the generations
+     * @param population
+     * @param items
+     * @param maxWeight
+     * @param generations
+     */
+    private static void runGenerations(List<List<Integer>> population, List<Object> items, int maxWeight, int generations){
         for(int i = 0; i < generations; i++){
-            selectedPopulation = fitness(population, items, maxValue);
-            if(selectedPopulation.size() == 5){
-                numberSons = 3;
-            } else {
-                numberSons = selectedPopulation.size();
-            }
-
-            numberSons = population.size() - selectedPopulation.size();
-            sons = crossover(population, numberSons);
-            numberMutations = population.size() - selectedPopulation.size() - sons.size();
-            mutatedPopulation = mutation(population, numberMutations);
-            population = new ArrayList<>();
-            population.addAll(selectedPopulation);
-            population.addAll(sons);
-            population.addAll(mutatedPopulation);
+            System.out.println("\nGeneration " + i);
+            population = newPopulation(population, items, maxWeight);
         }
 
-        return population;
+        System.out.println("Last generation: ");
+        for(int i = 0; i < population.size(); i++){
+            System.out.println(population.get(i));
+        }
     }
 
 
@@ -199,38 +175,12 @@ public class GeneticAlgorithm {
      */
     public static void run(List<Object> elements, int maxValue) {
         List<List<Integer>> initialPopulation = initialPopulation(elements);
-        List<List<Integer>> finalPopulation = runGenerations(initialPopulation, elements, maxValue);
-        List<Integer> bestChromosome = new ArrayList<>();
-        int bestValue = 0;
-        int bestWeight = 0;
-        int value = 0;
-        int weight = 0;
-        int n = elements.size();
 
-        for(List<Integer> chromosome : finalPopulation){
-            for(int i = 0; i < n; i++){
-                if(chromosome.get(i) == 1){
-                    value += elements.get(i).getValue();
-                    weight += elements.get(i).getWeight();
-                }
-            }
-            if(value > bestValue && weight <= maxValue){
-                bestValue = value;
-                bestWeight = weight;
-                bestChromosome = chromosome;
-            }
-            value = 0;
-            weight = 0;
+        System.out.println("Initial population: ");
+        for(int i = 0; i < initialPopulation.size(); i++){
+            System.out.println(initialPopulation.get(i));
         }
 
-        System.out.println("Genetic Algorithm!");
-        System.out.println("Best value: " + bestValue);
-        System.out.println("Best weight: " + bestWeight);
-        System.out.println("Objects selected: ");
-        for(int i = 0; i < n; i++){
-            if(bestChromosome.get(i) == 1){
-                System.out.println(elements.get(i).getName());
-            }
-        }
+        runGenerations(initialPopulation, elements, maxValue, 2);
     }
 }

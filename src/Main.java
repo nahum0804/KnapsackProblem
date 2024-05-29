@@ -9,7 +9,6 @@ import java.util.Random;
 public class Main {
 
     private static List<String> objects;
-
     /**
      * List of objects with different lengths
      */
@@ -102,7 +101,7 @@ public class Main {
          * Genetic Algorithm execution
          */
         GeneticAlgorithm geneticAlgorithm = new GeneticAlgorithm();
-        geneticAlgorithm.run(tenElements, 10);
+        geneticAlgorithm.run(tenElements, 30);
 
         System.out.println("\n\n");
 
