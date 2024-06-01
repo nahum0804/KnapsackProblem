@@ -94,25 +94,249 @@ public class Main {
 
         fiveElements = firstList();
         tenElements = generateObjects(10);
+        twentyElements = generateObjects(20);
+        thirtyElements = generateObjects(30);
+        fortyElements = generateObjects(40);
+        fiftyElements = generateObjects(50);
+
+        // 5 elements
+        System.out.println("-----------------------------------------------------");
+        System.out.println("5 elementos");
+        System.out.println("-----------------------------------------------------");
 
         /**
          * Genetic Algorithm execution
          */
+        System.out.println("-----------------------------------------------------");
+        System.out.println("Algoritmo Genético **********************************");
+        System.out.println("-----------------------------------------------------");
         GeneticAlgorithm geneticAlgorithm = new GeneticAlgorithm();
+        geneticAlgorithm.run(fiveElements, 20);
+
+        System.out.println("-----------------------------------------------------");
+        System.out.println("*****************************************************");
+        System.out.println("-----------------------------------------------------");
+        System.out.println("\n\n");
+
+        /**
+         * Dinamic Algorithm execution
+         */
+        System.out.println("-----------------------------------------------------");
+        System.out.println("Algoritmo de Programación Dinámica ******************");
+        System.out.println("-----------------------------------------------------");
+        DinamicAlgorithm dinamicAlgorithm = new DinamicAlgorithm();
+
+        DinamicAlgorithm.Result result = dinamicAlgorithm.run(fiveElements, 20);
+        System.out.println("\nEl valor máximo que se puede obtener es: " + result.getValorMax());
+        System.out.println("Los objetos seleccionados son:");
+        for (Object item : result.getItemsSelec()) {
+            System.out.println(item.getName() + " (Peso: " + item.getWeight() + ", Valor: " + item.getValue() + ")");
+        }
+        System.out.println("-----------------------------------------------------");
+        System.out.println("*****************************************************");
+        System.out.println("-----------------------------------------------------\n");
+
+
+        // 10 elements
+
+        System.out.println("-----------------------------------------------------");
+        System.out.println("10 elementos");
+        System.out.println("-----------------------------------------------------");
+
+        /**
+         * Genetic Algorithm execution
+         */
+        System.out.println("-----------------------------------------------------");
+        System.out.println("Algoritmo Genético **********************************");
+        System.out.println("-----------------------------------------------------");
+        GeneticAlgorithm geneticAlgorithm2 = new GeneticAlgorithm();
         geneticAlgorithm.run(tenElements, 30);
+
+        System.out.println("-----------------------------------------------------");
+        System.out.println("*****************************************************");
+        System.out.println("-----------------------------------------------------");
+        System.out.println("\n\n");
+
+        /**
+         * Dinamic Algorithm execution
+         */
+        System.out.println("-----------------------------------------------------");
+        System.out.println("Algoritmo de Programación Dinámica ******************");
+        System.out.println("-----------------------------------------------------");
+        DinamicAlgorithm dinamicAlgorithm2 = new DinamicAlgorithm();
+
+        DinamicAlgorithm.Result result2 = dinamicAlgorithm.run(tenElements, 10);
+        System.out.println("\nEl valor máximo que se puede obtener es: " + result.getValorMax());
+        System.out.println("Los objetos seleccionados son:");
+        for (Object item : result.getItemsSelec()) {
+            System.out.println(item.getName() + " (Peso: " + item.getWeight() + ", Valor: " + item.getValue() + ")");
+        }
+        System.out.println("-----------------------------------------------------");
+        System.out.println("*****************************************************");
+        System.out.println("-----------------------------------------------------\n");
+
+
+
+        // 20 elements
+
+        System.out.println("-----------------------------------------------------");
+        System.out.println("20 elementos");
+        System.out.println("-----------------------------------------------------");
+
+        /**
+         * Genetic Algorithm execution
+         */
+        System.out.println("-----------------------------------------------------");
+        System.out.println("Algoritmo Genético **********************************");
+        System.out.println("-----------------------------------------------------");
+        GeneticAlgorithm geneticAlgorithm3 = new GeneticAlgorithm();
+        geneticAlgorithm.run(twentyElements, 40);
+
+        System.out.println("-----------------------------------------------------");
+        System.out.println("*****************************************************");
+        System.out.println("-----------------------------------------------------");
 
         System.out.println("\n\n");
 
         /**
          * Dinamic Algorithm execution
          */
-        DinamicAlgorithm dinamicAlgorithm = new DinamicAlgorithm();
+        System.out.println("-----------------------------------------------------");
+        System.out.println("Algoritmo de Programación Dinámica ******************");
+        System.out.println("-----------------------------------------------------");
+        DinamicAlgorithm dinamicAlgorithm3 = new DinamicAlgorithm();
 
-        DinamicAlgorithm.Result result = dinamicAlgorithm.run(tenElements, 10);
-        System.out.println("El valor máximo que se puede obtener es: " + result.getValorMax());
+        DinamicAlgorithm.Result result3 = dinamicAlgorithm.run(twentyElements, 40);
+        System.out.println("\nEl valor máximo que se puede obtener es: " + result.getValorMax());
         System.out.println("Los objetos seleccionados son:");
         for (Object item : result.getItemsSelec()) {
             System.out.println(item.getName() + " (Peso: " + item.getWeight() + ", Valor: " + item.getValue() + ")");
         }
+        System.out.println("-----------------------------------------------------");
+        System.out.println("*****************************************************");
+        System.out.println("-----------------------------------------------------\n");
+
+
+        // 30 elements
+
+        System.out.println("-----------------------------------------------------");
+        System.out.println("30 elementos");
+        System.out.println("-----------------------------------------------------");
+
+        /**
+         * Genetic Algorithm execution
+         */
+        System.out.println("-----------------------------------------------------");
+        System.out.println("Algoritmo Genético **********************************");
+        System.out.println("-----------------------------------------------------");
+        GeneticAlgorithm geneticAlgorithm4 = new GeneticAlgorithm();
+        geneticAlgorithm.run(thirtyElements, 50);
+
+        System.out.println("-----------------------------------------------------");
+        System.out.println("*****************************************************");
+        System.out.println("-----------------------------------------------------");
+
+        System.out.println("\n\n");
+
+        /**
+         * Dinamic Algorithm execution
+         */
+        System.out.println("-----------------------------------------------------");
+        System.out.println("Algoritmo de Programación Dinámica ******************");
+        System.out.println("-----------------------------------------------------");
+        DinamicAlgorithm dinamicAlgorithm4 = new DinamicAlgorithm();
+
+        DinamicAlgorithm.Result result4 = dinamicAlgorithm.run(thirtyElements, 50);
+        System.out.println("\nEl valor máximo que se puede obtener es: " + result.getValorMax());
+        System.out.println("Los objetos seleccionados son:");
+        for (Object item : result.getItemsSelec()) {
+            System.out.println(item.getName() + " (Peso: " + item.getWeight() + ", Valor: " + item.getValue() + ")");
+        }
+
+        System.out.println("-----------------------------------------------------");
+        System.out.println("*****************************************************");
+        System.out.println("-----------------------------------------------------\n");
+
+
+        // 40 elements
+
+        System.out.println("-----------------------------------------------------");
+        System.out.println("40 elementos");
+        System.out.println("-----------------------------------------------------");
+
+        /**
+         * Genetic Algorithm execution
+         */
+        System.out.println("-----------------------------------------------------");
+        System.out.println("Algoritmo Genético **********************************");
+        System.out.println("-----------------------------------------------------");
+        GeneticAlgorithm geneticAlgorithm5 = new GeneticAlgorithm();
+        geneticAlgorithm.run(fortyElements, 60);
+
+        System.out.println("-----------------------------------------------------");
+        System.out.println("*****************************************************");
+        System.out.println("-----------------------------------------------------");
+
+        System.out.println("\n\n");
+
+        /**
+         * Dinamic Algorithm execution
+         */
+        System.out.println("-----------------------------------------------------");
+        System.out.println("Algoritmo de Programación Dinámica ******************");
+        System.out.println("-----------------------------------------------------");
+        DinamicAlgorithm dinamicAlgorithm5 = new DinamicAlgorithm();
+
+        DinamicAlgorithm.Result result5 = dinamicAlgorithm.run(fortyElements, 60);
+        System.out.println("\nEl valor máximo que se puede obtener es: " + result.getValorMax());
+        System.out.println("Los objetos seleccionados son:");
+        for (Object item : result.getItemsSelec()) {
+            System.out.println(item.getName() + " (Peso: " + item.getWeight() + ", Valor: " + item.getValue() + ")");
+        }
+
+        System.out.println("-----------------------------------------------------");
+        System.out.println("*****************************************************");
+        System.out.println("-----------------------------------------------------\n");
+
+
+        // 50 elements
+
+        System.out.println("-----------------------------------------------------");
+        System.out.println("50 elementos");
+        System.out.println("-----------------------------------------------------");
+
+        /**
+         * Genetic Algorithm execution
+         */
+        System.out.println("-----------------------------------------------------");
+        System.out.println("Algoritmo Genético **********************************");
+        System.out.println("-----------------------------------------------------");
+        GeneticAlgorithm geneticAlgorithm6 = new GeneticAlgorithm();
+        geneticAlgorithm.run(fiftyElements, 70);
+
+        System.out.println("-----------------------------------------------------");
+        System.out.println("*****************************************************");
+        System.out.println("-----------------------------------------------------");
+
+        System.out.println("\n\n");
+
+        /**
+         * Dinamic Algorithm execution
+         */
+        System.out.println("-----------------------------------------------------");
+        System.out.println("Algoritmo de Programación Dinámica ******************");
+        System.out.println("-----------------------------------------------------");
+        DinamicAlgorithm dinamicAlgorithm6 = new DinamicAlgorithm();
+
+        DinamicAlgorithm.Result result6 = dinamicAlgorithm.run(fiftyElements, 70);
+        System.out.println("\nEl valor máximo que se puede obtener es: " + result.getValorMax());
+        System.out.println("Los objetos seleccionados son:");
+        for (Object item : result.getItemsSelec()) {
+            System.out.println(item.getName() + " (Peso: " + item.getWeight() + ", Valor: " + item.getValue() + ")");
+        }
+
+        System.out.println("-----------------------------------------------------");
+        System.out.println("*****************************************************");
+        System.out.println("-----------------------------------------------------\n");
     }
 }
