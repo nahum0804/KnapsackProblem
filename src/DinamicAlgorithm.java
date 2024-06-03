@@ -154,9 +154,15 @@ public class DinamicAlgorithm {
      * @param maxValue
      */
     public static Result run(List<Object> elements, int maxValue) {
+        long startTime = System.currentTimeMillis(); // Start time
+
         Result result = mochilaDinamica(elements, maxValue);
         //m += ??;
         a++;
+
+        long endTime = System.currentTimeMillis(); // End time
+        long executionTime = endTime - startTime; // Execution time
+
         System.out.println("\n");
         System.out.println("Valor máximo: " + result.getValorMax());
         System.out.println("Peso total: " + result.getPesoTotal());
@@ -169,7 +175,7 @@ public class DinamicAlgorithm {
         System.out.println("\nMediciones: ---------------------------------");
         System.out.println("Asignaciones: " + a);
         System.out.println("Comparaciones: " + c);
-        System.out.println("Tiempo: ");
+        System.out.println("Tiempo: " + executionTime + " ms");
         System.out.println("Memoria: " + m + " bits");
         return result;
     }

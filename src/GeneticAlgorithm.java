@@ -8,10 +8,9 @@ import java.util.Random;
  */
 public class GeneticAlgorithm {
 
-    public static int a = 0; // Asignaciones
-    public static int c = 0; // Comparaciones
-
-    public static int m = 0; //Memoria
+    public static long a = 0; // Asignaciones
+    public static long c = 0; // Comparaciones
+    public static long m = 0; //Memory
 
     /**
      * Generate initial population of chromosomes
@@ -21,17 +20,16 @@ public class GeneticAlgorithm {
      */
     private static List<List<Integer>> initialPopulation(List<Object> items, int maxWeight) {
         List<List<Integer>> population = new ArrayList<>();
-        //m += ??;
+        //m += ??
         int n = items.size();
         m += 32;
         int initialPopulationSize;
         m += 32;
         Random random = new Random();
-        //m += ??;
-
+        m += 32;
         a += 3;
 
-        if(items.size() == 5){
+        if (items.size() == 5) {
             initialPopulationSize = 3;
             a++;
         } else {
@@ -43,7 +41,7 @@ public class GeneticAlgorithm {
         while (population.size() < initialPopulationSize) {
             c++;
             List<Integer> chromosome = new ArrayList<>();
-            //m += ??;
+            m += 32 * chromosome.size();
             a++;
             for (int j = 0; j < n; j++) {
                 c++;
@@ -71,7 +69,7 @@ public class GeneticAlgorithm {
         List<List<Integer>> newPopulation = new ArrayList<>();
         //m += ??;
         Random random = new Random();
-        //m += ??;
+        m += 32;
         int targetSize = isFirstGeneration ? population.size() * 2 : population.size();
         m += 32;
         a += 3;
@@ -79,9 +77,9 @@ public class GeneticAlgorithm {
         while (newPopulation.size() < targetSize) {
             c++;
             List<Integer> parent1 = tournamentSelection(population, items, maxWeight);
-            //m += ??;
+            m += 32 * parent1.size();
             List<Integer> parent2 = tournamentSelection(population, items, maxWeight);
-            //m += ??;
+            m += 32 * parent2.size();
 
             int parent1Fitness = fitness(parent1, items, maxWeight);
             m += 32;
@@ -89,14 +87,14 @@ public class GeneticAlgorithm {
             m += 32;
 
             List<Integer> child1 = crossover(parent1, parent2);
-            //m += ??;
+            m += 32 * child1.size();
             List<Integer> child2 = crossover(parent2, parent1);
-            //m += ??;
+            m += 32 * child2.size();
             a += 6;
 
             if (random.nextInt(100) < 10) {
                 List<Integer> originalChild1 = new ArrayList<>(child1);
-                //m += ??;
+                m += 32 * originalChild1.size();
                 child1 = mutation(child1);
                 int mutationChild1Fitness = fitness(child1, items, maxWeight);
                 m += 32;
@@ -109,7 +107,7 @@ public class GeneticAlgorithm {
 
             if (random.nextInt(100) < 10) {
                 List<Integer> originalChild2 = new ArrayList<>(child2);
-                //m += ??;
+                m += 32 * originalChild2.size();
                 child2 = mutation(child2);
                 int mutationChild2Fitness = fitness(child2, items, maxWeight);
                 m += 32;
@@ -167,7 +165,7 @@ public class GeneticAlgorithm {
         for (int i = 0; i < 3; i++) {
             c++;
             List<Integer> chromosome = population.get(random.nextInt(population.size()));
-            //m += ??;
+            m += 32 * chromosome.size();
             int fitness = fitness(chromosome, items, maxWeight);
             m += 32;
             a += 2;
@@ -219,7 +217,7 @@ public class GeneticAlgorithm {
      */
     private static List<Integer> crossover(List<Integer> parent1, List<Integer> parent2) {
         List<Integer> child = new ArrayList<>();
-        //m += ??;
+        m += 32 * child.size();
         Random random = new Random();
         //m += ??;
         int crossoverPoint = random.nextInt(parent1.size());
@@ -291,7 +289,7 @@ public class GeneticAlgorithm {
             System.out.println("\nGeneration " + i + " is done!");
             population = newPopulation(population, items, maxWeight, isFirstGeneration);
             isFirstGeneration = false;
-            a += 2;
+            a ++;
         }
 
         System.out.println("Last generation: ");
@@ -308,7 +306,7 @@ public class GeneticAlgorithm {
         for (int i = 0; i < Math.min(5, population.size()); i++) {
             c++;
             List<Integer> chromosome = population.get(i);
-            //m += ??;
+            m += 32 * chromosome.size();
             int value = fitness(chromosome, items, maxWeight);
             m += 32;
             int weight = getWeight(chromosome, items);
@@ -319,7 +317,7 @@ public class GeneticAlgorithm {
 
         // Best chromosome
         List<Integer> bestChromosome = population.get(0);
-        //m += ??;
+        m += 32 * bestChromosome.size();
         int bestValue = fitness(bestChromosome, items, maxWeight);
         m += 32;
         a += 2;
@@ -332,7 +330,7 @@ public class GeneticAlgorithm {
         int totalValue = 0;
         m += 32;
         a += 2;
-        for (int i = 0; i < bestChromosome.size(); i++) {
+        for (int i = 0; bestChromosome != null && i < bestChromosome.size(); i++) {
             c++;
             if (bestChromosome.get(i) == 1) {
                 Object item = items.get(i);
@@ -354,8 +352,11 @@ public class GeneticAlgorithm {
      * @param maxWeight
      */
     public static void run(List<Object> elements, int maxWeight) {
+        // Start measuring time
+        long startTime = System.currentTimeMillis();
+
         List<List<Integer>> initialPopulation = initialPopulation(elements, maxWeight);
-        //m += ??;
+        m += 32 + 32 * initialPopulation.size();
 
         System.out.println("Initial population: ");
         for (List<Integer> chromosome : initialPopulation) {
@@ -364,10 +365,14 @@ public class GeneticAlgorithm {
 
         runGenerations(initialPopulation, elements, maxWeight, 10);
 
+        // End measuring time
+        long endTime = System.currentTimeMillis();
+        long executionTime = endTime - startTime;
+
         System.out.println("\nMediciones: ---------------------------------");
         System.out.println("Asignaciones: " + a);
         System.out.println("Comparaciones: " + c);
-        System.out.println("Tiempo: ");
+        System.out.println("Tiempo: " + executionTime + " ms");
         System.out.println("Memoria: " + m + " bits");
     }
 }
