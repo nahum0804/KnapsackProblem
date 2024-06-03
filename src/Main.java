@@ -16,7 +16,6 @@ public class Main {
     private static List<Object> twentyElements;
     private static List<Object> thirtyElements;
     private static List<Object> fortyElements;
-    private static List<Object> testingElements;
     private static List<Object> fiftyElements;
 
     /**
@@ -98,9 +97,6 @@ public class Main {
         twentyElements = generateObjects(20);
         thirtyElements = generateObjects(30);
         fortyElements = generateObjects(40);
-
-        testingElements = generateObjects(42);
-
         fiftyElements = generateObjects(50);
 
         // 5 elements
@@ -305,7 +301,7 @@ public class Main {
         // 50 elements
 
         System.out.println("-----------------------------------------------------");
-        System.out.println("## elementos");
+        System.out.println("50 elementos");
         System.out.println("-----------------------------------------------------");
 
         /**
@@ -315,7 +311,7 @@ public class Main {
         System.out.println("Algoritmo Genético **********************************");
         System.out.println("-----------------------------------------------------");
         GeneticAlgorithm geneticAlgorithm6 = new GeneticAlgorithm();
-        geneticAlgorithm.run(testingElements, 50);
+        geneticAlgorithm.run(fiftyElements, 70);
 
         System.out.println("-----------------------------------------------------");
         System.out.println("*****************************************************");
@@ -331,7 +327,7 @@ public class Main {
         System.out.println("-----------------------------------------------------");
         DinamicAlgorithm dinamicAlgorithm6 = new DinamicAlgorithm();
 
-        DinamicAlgorithm.Result result6 = dinamicAlgorithm.run(testingElements, 50);
+        DinamicAlgorithm.Result result6 = dinamicAlgorithm.run(fiftyElements, 70);
         System.out.println("\nEl valor máximo que se puede obtener es: " + result.getValorMax());
         System.out.println("Los objetos seleccionados son:");
         for (Object item : result.getItemsSelec()) {
