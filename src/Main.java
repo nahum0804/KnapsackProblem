@@ -7,7 +7,6 @@ import java.util.Random;
  */
 public class Main {
 
-    private static List<String> objects;
     /**
      * List of objects with different lengths
      */

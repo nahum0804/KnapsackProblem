@@ -64,28 +64,6 @@ public class DinamicAlgorithm {
     }
 
     /**
-     * Algorithm for filling the rucksack
-     * @param elements
-     * @param maxValue
-     */
-    private static void mochila(List<Object> elements, int maxValue) {
-        List<List<Object>> matrix = new ArrayList<>();
-        //m += ??;
-        a++;
-
-        System.out.println("Dynamic Algorithm!");
-
-        for (Object element : elements) {
-            String weight = String.valueOf(element.getWeight());
-            //m += ??;
-            String value = String.valueOf(element.getValue());
-            //m += ??;
-            a += 2;
-            System.out.println(element.getName() + " - " + weight + " - " + value);
-        }
-    }
-
-    /**
      * Dynamic algorithm for filling the rucksack
      * @param items
      * @param maximo
